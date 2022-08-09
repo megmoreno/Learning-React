@@ -57,6 +57,9 @@ const MessageForm = () => {
             {inputFieldValues.map((inputFieldValue, index) => {
                 return (
                     <TextField 
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
                         key={index}
                         label={inputFieldValue.label}
                         onBlur={handleInputValue}
@@ -70,7 +73,7 @@ const MessageForm = () => {
                     />
                 )
             })}
-            <Button type="submit" disabled={!formIsValid()}>Submit</Button>
+            <Button type="submit" color="secondary" variant="contained" disabled={!formIsValid()}>Submit</Button>
         </form>
     )
 }

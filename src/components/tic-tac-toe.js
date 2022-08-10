@@ -1,5 +1,5 @@
 import React from 'react';
-import './../index.css';
+import './../tic-tac-toe.css';
 
 
 const Square = ({ value, onClick }) => {

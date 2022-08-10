@@ -1,60 +1,59 @@
-import React from "react";
+import React from 'react'
 import {
-    AppBar,
-    Toolbar,
-    CssBaseline,
-    Typography,
-    makeStyles,
-} from "@material-ui/core";
-import { Link } from "react-router-dom";
-
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  Typography,
+  makeStyles,
+} from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
-    navlinks: {
-        marginLeft: theme.spacing(10),
-        display: "flex",
+  navlinks: {
+    marginLeft: theme.spacing(10),
+    display: 'flex',
+  },
+  logo: {
+    flexGrow: '1',
+    cursor: 'pointer',
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'white',
+    fontSize: '20px',
+    marginLeft: theme.spacing(20),
+    '&:hover': {
+      borderBottom: '1px solid white',
     },
-    logo: {
-        flexGrow: "1",
-        cursor: "pointer",
-    },
-    link: {
-        textDecoration: "none",
-        color: "white",
-        fontSize: "20px",
-        marginLeft: theme.spacing(20),
-        "&:hover": {
-            borderBottom: "1px solid white",
-        },
-    },
-}));
+  },
+}))
 
 function Navbar() {
-    const classes = useStyles();
+  const classes = useStyles()
 
-    return (
-        <AppBar position="static">
-            <CssBaseline />
-            <Toolbar>
-                <Typography variant="h4" className={classes.logo}>
-                    MM
+  return (
+    <AppBar position="static">
+      <CssBaseline />
+      <Toolbar>
+        <Typography variant="h4" className={classes.logo}>
+          MM
         </Typography>
-                <div className={classes.navlinks}>
-                    <Link to="/" className={classes.link}>
-                        Home
-            </Link>
-                    <Link to="/about" className={classes.link}>
-                        About
-            </Link>
-                    <Link to="/contact" className={classes.link}>
-                        Contact
-            </Link>
-                    <Link to="/tic-tac-toe" className={classes.link}>
-                        Tic-Tac-Toe
-            </Link>
-                </div>
-            </Toolbar>
-        </AppBar>
-    );
+        <div className={classes.navlinks}>
+          <Link to="/" className={classes.link}>
+            Home
+          </Link>
+          <Link to="/about" className={classes.link}>
+            About
+          </Link>
+          <Link to="/contact" className={classes.link}>
+            Contact
+          </Link>
+          <Link to="/projects" className={classes.link}>
+            Projects
+          </Link>
+        </div>
+      </Toolbar>
+    </AppBar>
+  )
 }
-export default Navbar;
+export default Navbar

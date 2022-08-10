@@ -8,26 +8,6 @@ import {
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
-const useStyles = makeStyles((theme) => ({
-  navlinks: {
-    marginLeft: theme.spacing(10),
-    display: 'flex',
-  },
-  logo: {
-    flexGrow: '1',
-    cursor: 'pointer',
-  },
-  link: {
-    textDecoration: 'none',
-    color: 'white',
-    fontSize: '20px',
-    marginLeft: theme.spacing(20),
-    '&:hover': {
-      borderBottom: '1px solid white',
-    },
-  },
-}))
-
 function Navbar() {
   const classes = useStyles()
 
@@ -57,3 +37,23 @@ function Navbar() {
   )
 }
 export default Navbar
+
+const useStyles = makeStyles((theme) => ({
+  navlinks: {
+    marginLeft: theme.spacing(10),
+    display: 'flex',
+  },
+  logo: {
+    flexGrow: '1',
+    cursor: 'pointer',
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'white',
+    fontSize: '20px',
+    marginLeft: theme.spacing(20),
+    '&:hover': {
+      borderBottom: '1px solid white',
+    },
+  },
+}))

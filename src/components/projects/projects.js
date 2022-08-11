@@ -4,12 +4,12 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Grid from '@mui/material/Grid'
 import { Link } from 'react-router-dom'
-import { Button, makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import Typography from '@material-ui/core/Typography'
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: 'secondary',
+const Card = styled(Paper)(({ theme }) => ({
   ...theme.typography.fontWeightBold,
-  padding: theme.spacing(8),
   textAlign: 'center',
   textTransform: 'uppercase',
 }))
@@ -34,11 +34,15 @@ export default function Projects() {
         >
           {projectValues.map((project, index) => (
             <Grid item xs={2} sm={4} md={4} key={index}>
-              <Item>
-                <Link to={project.path} className={classes.link}>
-                  {project.name}
-                </Link>
-              </Item>
+              <Card className={classes.card}>
+                <CardActionArea
+                  className={classes.cardActionArea}
+                  component={Link}
+                  to={project.path}
+                >
+                  <Typography>{project.name}</Typography>
+                </CardActionArea>
+              </Card>
             </Grid>
           ))}
         </Grid>
@@ -51,9 +55,11 @@ const useStyles = makeStyles((theme) => ({
   projects: {
     margin: '2rem',
   },
-  link: {
-    textDecoration: 'none',
-    color: 'black',
-    fontSize: '40px',
+  card: {
+    '&:hover': { transform: 'scale3d(1.05, 1.05, 1)' },
+  },
+  cardActionArea: {
+    display: 'block',
+    padding: theme.spacing(8),
   },
 }))

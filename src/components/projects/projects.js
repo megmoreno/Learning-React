@@ -19,6 +19,10 @@ const projectValues = [
     name: 'Tic-Tac-Toe',
     path: '/tic-tac-toe',
   },
+  {
+    name: 'Auth0 Login',
+    path: '/login',
+  },
 ]
 
 export default function Projects() {

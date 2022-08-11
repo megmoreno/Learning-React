@@ -15,9 +15,9 @@ function Navbar() {
     <AppBar position="static">
       <CssBaseline />
       <Toolbar>
-        <Typography variant="h4" className={classes.logo}>
+        <Link to="/" className={classes.logo}>
           MM
-        </Typography>
+        </Link>
         <div className={classes.navlinks}>
           <Link to="/" className={classes.link}>
             Home
@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   logo: {
+    textDecoration: 'none',
+    color: 'white',
+    fontSize: '28px',
     flexGrow: '1',
     cursor: 'pointer',
   },

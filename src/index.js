@@ -12,6 +12,10 @@ import {
   makeStyles,
 } from '@material-ui/core/styles'
 import TicTacToeGame from './components/projects/tic-tac-toe/tic-tac-toe'
+import Login from './components/projects/login/login'
+import LoginSuccess from './components/projects/login/loginSuccess'
+import LogoutSuccess from './components/projects/login/logoutSuccess'
+import { Auth0Provider } from '@auth0/auth0-react'
 
 class App extends Component {
   render() {
@@ -25,6 +29,9 @@ class App extends Component {
             <Route exact path="/contact" element={<Contact />} />
             <Route exact path="/projects" element={<Projects />} />
             <Route exact path="/tic-tac-toe" element={<TicTacToeGame />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/login/success" element={<LoginSuccess />} />
+            <Route exact path="/logout/success" element={<LogoutSuccess />} />
           </Routes>
         </Router>
       </MuiThemeProvider>
@@ -44,12 +51,13 @@ const theme = createTheme({
   },
 })
 
-const useStyles = makeStyles(() => ({
-  body: {
-    font: '14px "Century Gothic", Futura, sans-serif',
-    margin: '20px',
-  },
-}))
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
-root.render(<App />)
+root.render(
+  <Auth0Provider
+    domain="dev-9k4x-jd9.us.auth0.com"
+    clientId="11jNty2pivoNPscWAmNpQhcTEcOGFlXx"
+    redirectUri="http://localhost:3000/login/success"
+  >
+    <App />
+  </Auth0Provider>
+)

@@ -20,7 +20,7 @@ const projectValues = [
     path: '/tic-tac-toe',
   },
   {
-    name: 'Auth0 Login',
+    name: 'Authentication with Auth0',
     path: '/login',
   },
 ]

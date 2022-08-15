@@ -1,10 +1,35 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
+import { Button, makeStyles } from '@material-ui/core'
+import Loading from '../../util/loading'
+import { Navigate } from 'react-router-dom'
 
-const Login = () => {
-  const { loginWithRedirect } = useAuth0()
+function Login() {
+  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0()
+  const classes = useStyles()
 
-  return <button onClick={() => loginWithRedirect()}>Log In</button>
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to={{ pathname: '/profile' }} />
+  }
+
+  return (
+    <div className={classes.login}>
+      <Button variant="contained" onClick={() => loginWithRedirect()}>
+        Log In
+      </Button>
+    </div>
+  )
 }
 
 export default Login
+
+const useStyles = makeStyles(() => ({
+  login: {
+    marginTop: '5rem',
+    textAlign: 'center',
+  },
+}))

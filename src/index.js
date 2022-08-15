@@ -6,16 +6,11 @@ import About from './components/about'
 import Contact from './components/contact/contact'
 import Projects from './components/projects/projects'
 import Navbar from './components/navbar'
-import {
-  MuiThemeProvider,
-  createTheme,
-  makeStyles,
-} from '@material-ui/core/styles'
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles'
 import TicTacToeGame from './components/projects/tic-tac-toe/tic-tac-toe'
 import Login from './components/projects/login/login'
-import LoginSuccess from './components/projects/login/loginSuccess'
-import LogoutSuccess from './components/projects/login/logoutSuccess'
 import { Auth0Provider } from '@auth0/auth0-react'
+import Profile from './components/projects/login/profile'
 
 class App extends Component {
   render() {
@@ -30,8 +25,7 @@ class App extends Component {
             <Route exact path="/projects" element={<Projects />} />
             <Route exact path="/tic-tac-toe" element={<TicTacToeGame />} />
             <Route exact path="/login" element={<Login />} />
-            <Route exact path="/login/success" element={<LoginSuccess />} />
-            <Route exact path="/logout/success" element={<LogoutSuccess />} />
+            <Route exact path="/profile" element={<Profile />} />
           </Routes>
         </Router>
       </MuiThemeProvider>
@@ -56,7 +50,7 @@ root.render(
   <Auth0Provider
     domain="dev-9k4x-jd9.us.auth0.com"
     clientId="11jNty2pivoNPscWAmNpQhcTEcOGFlXx"
-    redirectUri="http://localhost:3000/login/success"
+    redirectUri="http://localhost:3000/profile"
   >
     <App />
   </Auth0Provider>

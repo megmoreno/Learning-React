@@ -42,14 +42,14 @@ function Profile() {
 
 export default Profile
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   profile: {
     textAlign: 'center',
   },
   profileCard: {
     marginTop: '50px',
     marginBottom: '50px',
-    maxWidth: '300px',
+    maxWidth: theme.spacing(18),
     margin: 'auto',
     textAlign: 'center',
   },

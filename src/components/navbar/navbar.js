@@ -14,7 +14,7 @@ import NavDrawer from './navDrawer'
 function Navbar() {
   const classes = useStyles()
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   return (
     <AppBar position="static">
@@ -49,21 +49,21 @@ export default Navbar
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
-    marginLeft: theme.spacing(10),
+    marginLeft: theme.spacing(1),
     display: 'flex',
   },
   logo: {
     textDecoration: 'none',
     color: 'white',
-    fontSize: '28px',
+    fontSize: theme.spacing(1.75),
     flexGrow: '1',
     cursor: 'pointer',
   },
   link: {
     textDecoration: 'none',
     color: 'white',
-    fontSize: '20px',
-    marginLeft: theme.spacing(20),
+    fontSize: theme.spacing(1.25),
+    marginLeft: theme.spacing(7),
     '&:hover': {
       borderBottom: '1px solid white',
     },

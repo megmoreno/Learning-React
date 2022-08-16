@@ -15,7 +15,7 @@ export default Loading
 
 const useStyles = makeStyles(() => ({
   loading: {
-    marginTop: '15rem',
+    marginTop: '130px',
     textAlign: 'center',
   },
 }))

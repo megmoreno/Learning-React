@@ -43,6 +43,7 @@ const theme = createTheme({
       main: '#f50057',
     },
   },
+  spacing: (factor) => `${factor}rem`,
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

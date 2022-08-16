@@ -59,13 +59,13 @@ export default NavDrawer
 
 const useStyles = makeStyles((theme) => ({
   list: {
-    paddingLeft: '1.5rem',
-    paddingRight: '1.5rem',
+    paddingLeft: '24px',
+    paddingRight: '24px',
   },
   link: {
     textDecoration: 'none',
     color: theme.palette.primary.main,
-    fontSize: '1.5rem',
+    fontSize: theme.spacing(1.5),
   },
   icon: {
     color: 'white',

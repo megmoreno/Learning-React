@@ -29,7 +29,7 @@ export default Login
 
 const useStyles = makeStyles(() => ({
   login: {
-    marginTop: '5rem',
+    marginTop: '80px',
     textAlign: 'center',
   },
 }))

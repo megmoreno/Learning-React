@@ -5,11 +5,16 @@ import {
   CssBaseline,
   Typography,
   makeStyles,
+  useTheme,
+  useMediaQuery,
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import NavDrawer from './navDrawer'
 
 function Navbar() {
   const classes = useStyles()
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <AppBar position="static">
@@ -18,20 +23,24 @@ function Navbar() {
         <Link to="/" className={classes.logo}>
           MM
         </Link>
-        <div className={classes.navlinks}>
-          <Link to="/" className={classes.link}>
-            Home
-          </Link>
-          <Link to="/about" className={classes.link}>
-            About
-          </Link>
-          <Link to="/contact" className={classes.link}>
-            Contact
-          </Link>
-          <Link to="/projects" className={classes.link}>
-            Projects
-          </Link>
-        </div>
+        {isMobile ? (
+          <NavDrawer />
+        ) : (
+          <div className={classes.navlinks}>
+            <Link to="/" className={classes.link}>
+              Home
+            </Link>
+            <Link to="/about" className={classes.link}>
+              About
+            </Link>
+            <Link to="/contact" className={classes.link}>
+              Contact
+            </Link>
+            <Link to="/projects" className={classes.link}>
+              Projects
+            </Link>
+          </div>
+        )}
       </Toolbar>
     </AppBar>
   )

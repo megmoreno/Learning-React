@@ -11,6 +11,7 @@ import TicTacToeGame from './components/projects/tic-tac-toe/tic-tac-toe'
 import Login from './components/projects/login/login'
 import { Auth0Provider } from '@auth0/auth0-react'
 import Profile from './components/projects/login/profile'
+import TicTacToeGrid from './components/tic-tac-toe-grid/TicTacToeGrid'
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/tic-tac-toe" element={<TicTacToeGame />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/tic-tac-toe-grid" element={<TicTacToeGrid />} />
           </Routes>
         </Router>
       </MuiThemeProvider>

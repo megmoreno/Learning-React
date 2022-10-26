@@ -11,13 +11,15 @@ export default function TicTacToeGrid() {
   const classes = useStyles()
 
   return (
-    <div className={classes.gridWrapper}>
-      <div className={classes.gameGrid}>
-        {grid.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <Cell key={`${colIndex}-${rowIndex}`} cell={cell} />
-          ))
-        )}
+    <div className={classes.container}>
+      <div className={classes.gridWrapper}>
+        <div className={classes.gameGrid}>
+          {grid.map((row, rowIndex) =>
+            row.map((cell, colIndex) => (
+              <Cell key={`${colIndex}-${rowIndex}`} cell={cell} />
+            ))
+          )}
+        </div>
       </div>
     </div>
   )
@@ -25,8 +27,8 @@ export default function TicTacToeGrid() {
 
 const cellStyle = {
   backgroundColor: '#fff',
-  height: 75,
-  width: 75,
+  height: 150,
+  width: 150,
 }
 
 function Cell({ cell }) {
@@ -34,6 +36,10 @@ function Cell({ cell }) {
 }
 
 const useStyles = makeStyles(() => ({
+  container: {
+    textAlign: 'center',
+    marginTop: '80px',
+  },
   gridWrapper: {
     display: 'inline-block',
   },

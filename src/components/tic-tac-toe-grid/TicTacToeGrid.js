@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core'
+import Cell from './Cell'
 
 export default function TicTacToeGrid() {
-  const grid = [
+  const initialGrid = [
     [null, null, null],
     [null, null, null],
     [null, null, null],
   ]
+  const [grid, setGrid] = useState(initialGrid)
+  const [turn, setTurn] = useState('X')
+
+  const onClick = (location) => {
+    const newGrid = [...grid]
+    newGrid[location.rowIndex][location.colIndex] = turn
+    setGrid(newGrid)
+    setTurn(turn === 'X' ? 'O' : 'X')
+  }
 
   const classes = useStyles()
 
@@ -16,23 +26,17 @@ export default function TicTacToeGrid() {
         <div className={classes.gameGrid}>
           {grid.map((row, rowIndex) =>
             row.map((cell, colIndex) => (
-              <Cell key={`${colIndex}-${rowIndex}`} cell={cell} />
+              <Cell
+                key={`${colIndex}-${rowIndex}`}
+                cell={cell}
+                onClick={() => onClick({ colIndex, rowIndex })}
+              />
             ))
           )}
         </div>
       </div>
     </div>
   )
-}
-
-const cellStyle = {
-  backgroundColor: '#fff',
-  height: 150,
-  width: 150,
-}
-
-function Cell({ cell }) {
-  return <div style={cellStyle}>{cell}</div>
 }
 
 const useStyles = makeStyles(() => ({

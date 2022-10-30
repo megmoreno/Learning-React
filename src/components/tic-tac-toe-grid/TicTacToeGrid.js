@@ -13,7 +13,6 @@ export default function TicTacToeGrid() {
   const [grid, setGrid] = useState(initialGrid)
   const [turn, setTurn] = useState('X')
   const [moveCount, setMoveCount] = useState(0)
-  const [hasWonGame, setHasWonGame] = useState(false)
   const [wonGameAlertIsOpen, setWonGameAlertOpen] = useState(false)
   const [gameIsActive, setGameIsActive] = useState(true)
   const [drawGameAlertIsOpen, setDrawGameAlertIsOpen] = useState(false)
@@ -28,7 +27,6 @@ export default function TicTacToeGrid() {
     const newMoveCount = moveCount + 1
     setMoveCount(newMoveCount)
     const checkForWin = checkForCurrentTurnWin(location)
-    setHasWonGame(checkForWin)
     if (checkForWin === false) {
       setTurn(turn === 'X' ? 'O' : 'X')
     }
@@ -44,7 +42,6 @@ export default function TicTacToeGrid() {
     setDrawGameAlertIsOpen(false)
     setGrid(initialGrid)
     setMoveCount(0)
-    setHasWonGame(false)
     setGameIsActive(true)
     setTurn('X')
   }

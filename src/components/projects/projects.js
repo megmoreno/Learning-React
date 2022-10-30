@@ -16,9 +16,9 @@ const Card = styled(Paper)(({ theme }) => ({
 
 const projectValues = [
   {
-    name: 'Tic-Tac-Toe',
-    path: '/tic-tac-toe',
-    dateCompleted: Date('Aug 5, 2022'),
+    name: 'Tic-Tac-Toe using CSS Grid',
+    path: '/tic-tac-toe-grid',
+    dateCompleted: Date('Oct 29, 2022'),
   },
   {
     name: 'Authentication with Auth0',
@@ -26,9 +26,9 @@ const projectValues = [
     dateCompleted: Date('Aug 10, 2022'),
   },
   {
-    name: 'Tic-Tac-Toe using CSS Grid',
-    path: '/tic-tac-toe-grid',
-    dateCompleted: Date('Aug 19, 2022'),
+    name: 'Tic-Tac-Toe',
+    path: '/tic-tac-toe',
+    dateCompleted: Date('Aug 5, 2022'),
   },
 ]
 

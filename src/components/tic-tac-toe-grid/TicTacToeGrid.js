@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Button, makeStyles } from '@material-ui/core'
 import Cell from './Cell'
+import WonGameAlertDialog from './WonGameAlertDialog'
+import DrawGameAlertDialog from './DrawGameAlertDialog'
 
 export default function TicTacToeGrid() {
   const initialGrid = [
@@ -12,23 +14,45 @@ export default function TicTacToeGrid() {
   const [turn, setTurn] = useState('X')
   const [moveCount, setMoveCount] = useState(0)
   const [hasWonGame, setHasWonGame] = useState(false)
+  const [wonGameAlertIsOpen, setWonGameAlertOpen] = useState(false)
+  const [gameIsActive, setGameIsActive] = useState(true)
+  const [drawGameAlertIsOpen, setDrawGameAlertIsOpen] = useState(false)
 
-  if (hasWonGame) {
-    alert(turn + ' wins!')
-    setMoveCount(0)
-  } else if (moveCount === 9) {
-    alert("It's a draw")
-    setMoveCount(0)
-  }
-
-  const onClick = (location) => {
+  const onCellClick = (location) => {
     if (grid[location.rowIndex][location.colIndex] !== null) return
+
     const newGrid = [...grid]
     newGrid[location.rowIndex][location.colIndex] = turn
     setGrid(newGrid)
-    setMoveCount((prev) => prev + 1)
-    setHasWonGame(checkForCurrentTurnWin(location))
-    setTurn(turn === 'X' ? 'O' : 'X')
+
+    const newMoveCount = moveCount + 1
+    setMoveCount(newMoveCount)
+    const checkForWin = checkForCurrentTurnWin(location)
+    setHasWonGame(checkForWin)
+    if (checkForWin === false) {
+      setTurn(turn === 'X' ? 'O' : 'X')
+    }
+    if (checkForWin) {
+      setWonGameAlertOpen(true)
+    } else if (newMoveCount === 9) {
+      setDrawGameAlertIsOpen(true)
+    }
+  }
+
+  const resetGame = () => {
+    setWonGameAlertOpen(false)
+    setDrawGameAlertIsOpen(false)
+    setGrid(initialGrid)
+    setMoveCount(0)
+    setHasWonGame(false)
+    setGameIsActive(true)
+    setTurn('X')
+  }
+
+  const onNotYetButtonClick = () => {
+    setWonGameAlertOpen(false)
+    setDrawGameAlertIsOpen(false)
+    setGameIsActive(false)
   }
 
   const classes = useStyles()
@@ -62,34 +86,41 @@ export default function TicTacToeGrid() {
   }
 
   return (
-    <div className={classes.container}>
-      <div className={classes.header}>
-        <h1>Tic-Tac-Toe</h1>
-        <h3>Next up: {turn}</h3>
-        <Button
-          type="button"
-          variant="outlined"
-          onClick={() => {
-            setGrid(initialGrid)
-            setMoveCount(0)
-          }}
-        >
-          Reset Game
-        </Button>
-      </div>
-      <div className={classes.gridWrapper}>
-        <div className={classes.gameGrid}>
-          {grid.map((row, rowIndex) =>
-            row.map((cell, colIndex) => (
-              <Cell
-                key={`${colIndex}-${rowIndex}`}
-                cell={cell}
-                onClick={() => onClick({ colIndex, rowIndex })}
-              />
-            ))
-          )}
+    <div>
+      <div className={classes.container}>
+        <div className={classes.header}>
+          <h1>Tic-Tac-Toe</h1>
+          <h3>Next up: {turn}</h3>
+          <Button type="button" variant="outlined" onClick={resetGame}>
+            Reset Game
+          </Button>
+        </div>
+        <div className={classes.gridWrapper}>
+          <div className={classes.gameGrid}>
+            {grid.map((row, rowIndex) =>
+              row.map((cell, colIndex) => (
+                <Cell
+                  key={`${colIndex}-${rowIndex}`}
+                  cell={cell}
+                  onClick={() => onCellClick({ colIndex, rowIndex })}
+                  disabled={!gameIsActive}
+                />
+              ))
+            )}
+          </div>
         </div>
       </div>
+      <WonGameAlertDialog
+        open={wonGameAlertIsOpen}
+        turn={turn}
+        onRematchButtonClick={resetGame}
+        onNotYetButtonClick={onNotYetButtonClick}
+      />
+      <DrawGameAlertDialog
+        open={drawGameAlertIsOpen}
+        onRematchButtonClick={resetGame}
+        onNotYetButtonClick={onNotYetButtonClick}
+      />
     </div>
   )
 }
@@ -97,7 +128,8 @@ export default function TicTacToeGrid() {
 const useStyles = makeStyles(() => ({
   container: {
     textAlign: 'center',
-    marginTop: '80px',
+    marginTop: '30px',
+    marginBottom: '150px',
   },
   header: {
     marginBottom: '15px',

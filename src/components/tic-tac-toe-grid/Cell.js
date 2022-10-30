@@ -1,12 +1,17 @@
 import React from 'react'
 import { Button, makeStyles } from '@material-ui/core'
 
-export default function Cell({ cell, onClick }) {
+export default function Cell({ cell, onClick, disabled }) {
   const classes = useStyles()
 
   return (
     <div className={classes.cellStyle}>
-      <Button type="button" className={classes.buttonStyle} onClick={onClick}>
+      <Button
+        type="button"
+        className={classes.buttonStyle}
+        onClick={onClick}
+        disabled={disabled}
+      >
         {cell}
       </Button>
     </div>
